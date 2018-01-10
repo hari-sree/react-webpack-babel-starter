@@ -1,20 +1,31 @@
 import React from 'React';
+import PropTypes from 'prop-types';
 import { createStore } from 'redux';
-import { Provider } from 'react-redux';
+import { Provider, connect } from 'react-redux';
 import rootReducer from '../reducers/rootReducer'
 import Hello from './Hello';
 
 var store = createStore(rootReducer)
 
 class App extends React.Component {
+  componentDidMount(){
+    this.props.initialize();
+  }
   render(){
     return (<Hello />);
   }
 }
 
-var ReduxApp = (props) =>
-  <Provider store={store}>
-    <App />
-  </Provider>
+App.propTypes = {
+  initialize : PropTypes.func
+}
 
-export { App, ReduxApp };  
+export default connect((state)=> ({}), (dispatch) => {
+  return {
+    initialize : () => {
+      dispatch({
+        type: 'INIT_APP'
+      });
+    }
+  }
+})(App);
