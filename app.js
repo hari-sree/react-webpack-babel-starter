@@ -1,12 +1,5 @@
 import React from 'React';
-import ReactDom from 'react-dom'
+import ReactDom from 'react-dom';
+import { ReduxApp } from './components/App';
 
-class Hello extends React.Component {
-	render(){
-		return(
-				<div>React ready !!</div>
-			);
-	}
-}
-
-ReactDom.render(<Hello />, document.getElementById('container'));
+ReactDom.render(<ReduxApp />, document.getElementById('container'));
